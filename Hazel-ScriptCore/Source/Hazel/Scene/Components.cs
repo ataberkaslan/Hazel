@@ -69,6 +69,12 @@ namespace Hazel
 			get => InternalCalls.Rigidbody2DComponent_GetType(Entity.ID);
 			set => InternalCalls.Rigidbody2DComponent_SetType(Entity.ID, value);
 		}
+
+		public bool FixedRotation
+		{
+			get => InternalCalls.Rigidbody2DComponent_GetFixedRotation(Entity.ID);
+			set => InternalCalls.Rigidbody2DComponent_SetFixedRotation(Entity.ID, value);
+		}
 		
 		public void ApplyLinearImpulse(Vector2 impulse, Vector2 worldPosition, bool wake)
 		{

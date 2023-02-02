@@ -161,6 +161,26 @@ namespace Hazel {
 		return Utils::Rigidbody2DTypeFromBox2DBody(body->GetType());
 	}
 	
+	static bool Rigidbody2DComponent_GetFixedRotation(UUID entityID)
+	{
+		Scene* scene = ScriptEngine::GetSceneContext();
+		HZ_CORE_ASSERT(scene);
+		Entity entity = scene->GetEntityByUUID(entityID);
+		HZ_CORE_ASSERT(entity);
+
+		auto& rb2d = entity.GetComponent<Rigidbody2DComponent>();
+		return rb2d.FixedRotation;
+	}
+	static void Rigidbody2DComponent_SetFixedRotation(UUID entityID,bool fixedRotation)
+	{
+		Scene* scene = ScriptEngine::GetSceneContext();
+		HZ_CORE_ASSERT(scene);
+		Entity entity = scene->GetEntityByUUID(entityID);
+		HZ_CORE_ASSERT(entity);
+
+		auto& rb2d = entity.GetComponent<Rigidbody2DComponent>();
+		rb2d.FixedRotation = fixedRotation;
+	}
 	static void Rigidbody2DComponent_SetType(UUID entityID, Rigidbody2DComponent::BodyType bodyType)
 	{
 		Scene* scene = ScriptEngine::GetSceneContext();
@@ -229,6 +249,8 @@ namespace Hazel {
 		HZ_ADD_INTERNAL_CALL(Rigidbody2DComponent_GetLinearVelocity);
 		HZ_ADD_INTERNAL_CALL(Rigidbody2DComponent_GetType);
 		HZ_ADD_INTERNAL_CALL(Rigidbody2DComponent_SetType);
+		HZ_ADD_INTERNAL_CALL(Rigidbody2DComponent_GetFixedRotation);
+		HZ_ADD_INTERNAL_CALL(Rigidbody2DComponent_SetFixedRotation);
 
 		HZ_ADD_INTERNAL_CALL(Input_IsKeyDown);
 	}
